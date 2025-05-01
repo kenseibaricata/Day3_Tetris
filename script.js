@@ -255,12 +255,18 @@ class Tetris {
             return true;
         }
 
-        this.lockPiece();
+        // ブロックが最下部に到達した場合のみロック
+        if (this.currentPiece.position.y >= 0) {
+            this.lockPiece();
+        }
         return false;
     }
 
     hardDrop() {
-        while (this.moveDown()) {}
+        let dropped = true;
+        while (dropped) {
+            dropped = this.moveDown();
+        }
     }
 
     rotatePiece() {
@@ -294,6 +300,7 @@ class Tetris {
     }
 
     lockPiece() {
+        // 現在のピースをボードに固定
         this.currentPiece.shape.forEach((row, dy) => {
             row.forEach((cell, dx) => {
                 if (cell) {
@@ -306,8 +313,13 @@ class Tetris {
             });
         });
 
-        this.clearLines();
+        // 行の消去を実行
+        const linesCleared = this.clearLines();
+        
+        // 新しいピースを作成
         this.createCurrentPiece();
+        
+        // ボードを更新
         this.updateBoard();
     }
 
@@ -329,11 +341,6 @@ class Tetris {
         if (linesCleared > 0) {
             // スコアの更新
             this.updateScore(linesCleared);
-            
-            // 効率的なDOM更新
-            requestAnimationFrame(() => {
-                this.updateBoard();
-            });
         }
 
         return linesCleared;
