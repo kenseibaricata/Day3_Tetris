@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ポップテトリス</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="game-wrapper">
+        <div class="game-container">
+            <div class="game-info">
+                <h1>ポップテトリス</h1>
+                <div class="score-container">
+                    <p>スコア: <span id="score">0</span></p>
+                    <p>レベル: <span id="level">1</span></p>
+                    <p>ライン: <span id="lines">0</span></p>
+                </div>
+                <div class="next-piece-container">
+                    <h2>次のブロック</h2>
+                    <div id="next-piece-display"></div>
+                </div>
+                <div class="controls-info">
+                    <h2>操作方法</h2>
+                    <ul>
+                        <li>← → : 移動</li>
+                        <li>↑ : 回転</li>
+                        <li>↓ : 落下</li>
+                        <li>スペース : 即落下</li>
+                    </ul>
+                </div>
+                <button id="start-button" class="game-button">スタート</button>
+                <button id="restart-button" class="game-button" style="display: none;">リスタート</button>
+            </div>
+            <div class="board-container">
+                <div id="game-board"></div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
